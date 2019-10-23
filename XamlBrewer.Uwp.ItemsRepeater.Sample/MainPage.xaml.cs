@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Xml.Linq;
@@ -59,23 +57,7 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
             GenreRepeater.ItemsSource = Genres;
         }
 
-        private void ItemsRepeater_ElementClearing(Microsoft.UI.Xaml.Controls.ItemsRepeater sender, Microsoft.UI.Xaml.Controls.ItemsRepeaterElementClearingEventArgs args)
-        {
-            if ((args.Element as FrameworkElement)?.DataContext != null)
-            {
-                Debugger.Break();
-            }
-        }
-
-        private void ItemsRepeater_ElementPrepared(Microsoft.UI.Xaml.Controls.ItemsRepeater sender, Microsoft.UI.Xaml.Controls.ItemsRepeaterElementPreparedEventArgs args)
-        {
-            if ((args.Element as FrameworkElement)?.DataContext != null)
-            {
-                Debugger.Break();
-            }
-        }
-
-        private void WatchMovie_Click(object sender, RoutedEventArgs e)
+        private void Movie_Click(object sender, RoutedEventArgs e)
         {
             var movie = (sender as FrameworkElement)?.DataContext as Movie;
         }
