@@ -5,8 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.UI.Xaml.Controls"
-      mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      mc:Ignorable="d">
     <Page.Resources>
         <Style TargetType="controls:TeachingTip">
             <Setter Property="BorderThickness"
@@ -77,22 +76,36 @@
         <controls:StackLayout x:Key="HorizontalStackLayout"
                               Orientation="Horizontal" />
     </Page.Resources>
+    <Page.Background>
+        <AcrylicBrush BackgroundSource="HostBackdrop"
+                      TintColor="{ThemeResource SystemColorBackgroundColor}"
+                      TintOpacity="0.9"
+                      FallbackColor="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    </Page.Background>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <TextBlock xmlns:appmodel="using:Windows.ApplicationModel"
+                   Text="{x:Bind appmodel:Package.Current.DisplayName}"
+                   Style="{StaticResource CaptionTextBlockStyle}"
+                   IsHitTestVisible="False"
+                   Margin="12 8 0 0" />
 
         <Image Source="/Assets/XamlFlix.png"
                Height="60"
                VerticalAlignment="Top"
                HorizontalAlignment="Right"
-               Margin="6" />
+               Margin="6"
+               Grid.Row="1" />
 
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       VerticalScrollMode="Auto"
                       HorizontalScrollMode="Disabled"
-                      Grid.Row="1">
+                      Grid.Row="2">
             <controls:ItemsRepeater x:Name="GenreRepeater"
                                     ItemTemplate="{StaticResource GenreTemplate}"
                                     Layout="{StaticResource VerticalStackLayout}"
@@ -104,7 +117,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         Width="40"
-                        Grid.Row="1" />
+                        Grid.Row="2" />
 
         <controls:TeachingTip Target="{x:Bind FakeTarget}"
                               Title="I looks like you are trying to scroll."
