@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace XamlBrewer.Uwp.ItemsRepeater.Sample
 {
@@ -59,6 +60,16 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
 
         private void Movie_Click(object sender, RoutedEventArgs e)
         {
+            FlyoutShowOptions options = new FlyoutShowOptions();
+            options.ShowMode = FlyoutShowMode.Standard;
+            options.Placement = FlyoutPlacementMode.Top;
+
+            MovieCommands.ShowAt(sender as FrameworkElement, options);
+        }
+
+        private void Element_Click(object sender, RoutedEventArgs e)
+        {
+            // DataContext is here.
             var movie = (sender as FrameworkElement)?.DataContext as Movie;
         }
     }

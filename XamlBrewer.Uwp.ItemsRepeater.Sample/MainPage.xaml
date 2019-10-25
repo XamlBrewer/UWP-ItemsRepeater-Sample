@@ -47,34 +47,44 @@
                               Spacing="0" />
         <DataTemplate x:Key="MovieTemplate"
                       x:DataType="local:Movie">
-            <Image Source="{x:Bind PosterUrl}"
-                   Height="360"
-                   Stretch="UniformToFill"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"
-                   ToolTipService.ToolTip="{x:Bind Title}">
-                <Image.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="Info"
-                                        DataContext="{x:Bind}"
-                                        Click="Movie_Click">
-                            <MenuFlyoutItem.Icon>
-                                <SymbolIcon Symbol="List" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Play"
-                                        DataContext="{x:Bind}"
-                                        Click="Movie_Click">
-                            <MenuFlyoutItem.Icon>
-                                <SymbolIcon Symbol="Play" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
-                </Image.ContextFlyout>
-            </Image>
+            <Button Click="Movie_Click"
+                    DataContext="{x:Bind}"
+                    BorderThickness="0"
+                    Padding="0"
+                    CornerRadius="0">
+                <Image Source="{x:Bind PosterUrl}"
+                       Height="360"
+                       Stretch="UniformToFill"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       ToolTipService.ToolTip="{x:Bind Title}">
+                </Image>
+            </Button>
         </DataTemplate>
         <controls:StackLayout x:Key="HorizontalStackLayout"
                               Orientation="Horizontal" />
+        <controls:CommandBarFlyout Placement="Right"
+                                   x:Name="MovieCommands">
+            <AppBarButton Label="Play"
+                          Icon="Play"
+                          ToolTipService.ToolTip="Play"
+                          Click="Element_Click" />
+            <AppBarButton Label="Info"
+                          Icon="List"
+                          ToolTipService.ToolTip="Info"
+                          Click="Element_Click" />
+            <AppBarButton Label="Download"
+                          Icon="Download"
+                          ToolTipService.ToolTip="Download"
+                          Click="Element_Click" />
+            <controls:CommandBarFlyout.SecondaryCommands>
+                <AppBarButton Label="Buy"
+                              Click="Element_Click" />
+                <AppBarButton Label="Rate"
+                              Click="Element_Click" />
+            </controls:CommandBarFlyout.SecondaryCommands>
+        </controls:CommandBarFlyout>
+
     </Page.Resources>
     <Page.Background>
         <AcrylicBrush BackgroundSource="HostBackdrop"
