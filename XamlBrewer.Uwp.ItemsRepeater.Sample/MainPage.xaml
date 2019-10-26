@@ -63,8 +63,8 @@
         </DataTemplate>
         <controls:StackLayout x:Key="HorizontalStackLayout"
                               Orientation="Horizontal" />
-        <controls:CommandBarFlyout Placement="Right"
-                                   x:Name="MovieCommands">
+        <controls:CommandBarFlyout x:Name="MovieCommands"
+                                   Placement="Right">
             <AppBarButton Label="Play"
                           Icon="Play"
                           ToolTipService.ToolTip="Play"
@@ -129,13 +129,14 @@
                         Width="40"
                         Grid.Row="2" />
 
-        <controls:TeachingTip Target="{x:Bind FakeTarget}"
+        <controls:TeachingTip x:Name="ScrollTeachingTip"
+                              Target="{x:Bind FakeTarget}"
                               Title="I looks like you are trying to scroll."
                               Subtitle="
                               
                               With the mouse on this filmstrip you'll scroll vertically."
                               PreferredPlacement="Right"
-                              IsOpen="True">
+                              IsOpen="False">
             <controls:TeachingTip.IconSource>
                 <controls:SymbolIconSource Symbol="Sort" />
             </controls:TeachingTip.IconSource>

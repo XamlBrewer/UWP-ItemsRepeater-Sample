@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Windows.UI.Xaml;
@@ -56,6 +57,10 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
             }
 
             GenreRepeater.ItemsSource = Genres;
+
+            // Open the teaching tip after rendering most images.
+            await Task.Delay(2000);
+            ScrollTeachingTip.IsOpen = true;
         }
 
         private void Movie_Click(object sender, RoutedEventArgs e)
