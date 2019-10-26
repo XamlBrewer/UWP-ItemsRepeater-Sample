@@ -9,7 +9,7 @@ CommandBarFlyout:
 ![Screenshot](Assets/CommandBarFlyout.png?raw=true)
 
 MediaPlayer:
-![Screenshot](Assets/Mediaplayer.png?raw=true)
+![Screenshot](Assets/MediaPlayer.png?raw=true)
 
 TeachingTip:
 ![Screenshot](Assets/TeachingTip.png?raw=true)
