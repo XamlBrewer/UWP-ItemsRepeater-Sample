@@ -9,6 +9,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <x:Double x:Key="ContentDialogMaxWidth">800</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

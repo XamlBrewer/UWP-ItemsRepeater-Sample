@@ -141,5 +141,17 @@
                 <controls:SymbolIconSource Symbol="Sort" />
             </controls:TeachingTip.IconSource>
         </controls:TeachingTip>
+        <ContentDialog x:Name="MediaPlayerDialog"
+                       Closing="MediaPlayerDialog_Closing"
+                       CloseButtonText="Close">
+            <StackPanel>
+                <TextBlock x:Name="TitleText"
+                           Margin="0 0 0 20" />
+                <MediaPlayerElement x:Name="Player"
+                                    AreTransportControlsEnabled="True"
+                                    MinWidth="600"
+                                    AutoPlay="True" />
+            </StackPanel>
+        </ContentDialog>
     </Grid>
 </Page>

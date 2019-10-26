@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Windows.Media.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -49,7 +51,8 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
                         .Select(m => new Movie()
                         {
                             Title = m.XPathSelectElement("info/title").Value,
-                            PosterUrl = m.XPathSelectElement("poster/xlarge").Value
+                            PosterUrl = m.XPathSelectElement("poster/xlarge").Value,
+                            TrailerUrl = m.XPathSelectElement("preview/large").Value
                         })
                         //.OrderBy(m => m.Title)
                         .ToList()
@@ -72,10 +75,23 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
             MovieCommands.ShowAt(sender as FrameworkElement, options);
         }
 
-        private void Element_Click(object sender, RoutedEventArgs e)
+        private async void Element_Click(object sender, RoutedEventArgs e)
         {
-            // DataContext is here.
+            // It stays on top of the dialog.
+            MovieCommands.Hide();
+
             var movie = (sender as FrameworkElement)?.DataContext as Movie;
+            var source = MediaSource.CreateFromUri(new Uri(movie.TrailerUrl));
+
+            TitleText.Text = movie.Title;
+            Player.Source = source;
+            await MediaPlayerDialog.ShowAsync();
+        }
+
+        private void MediaPlayerDialog_Closing(ContentDialog sender, ContentDialogClosingEventArgs args)
+        {
+            // Prevent the player to continue playing.
+            Player.Source = null;
         }
     }
 }
