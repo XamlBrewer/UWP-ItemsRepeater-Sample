@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Numerics;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Windows.Media.Core;
+using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Input;
 
 namespace XamlBrewer.Uwp.ItemsRepeater.Sample
 {
     public sealed partial class MainPage : Page
     {
         private List<Genre> _genres = new List<Genre>();
+        private Compositor _compositor = Window.Current.Compositor;
+        private SpringVector3NaturalMotionAnimation _springAnimation;
 
         public List<Genre> Genres => _genres;
 
@@ -92,6 +97,33 @@ namespace XamlBrewer.Uwp.ItemsRepeater.Sample
         {
             // Prevent the player to continue playing.
             Player.Source = null;
+        }
+
+        private void CreateOrUpdateSpringAnimation(float finalValue)
+        {
+            if (_springAnimation == null)
+            {
+                _springAnimation = _compositor.CreateSpringVector3Animation();
+                _springAnimation.Target = "Scale";
+            }
+
+            _springAnimation.FinalValue = new Vector3(finalValue);
+        }
+
+        private void Element_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            // Scale up a little.
+            CreateOrUpdateSpringAnimation(1.02f);
+
+            (sender as UIElement).StartAnimation(_springAnimation);
+        }
+
+        private void Element_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            // Scale back down.
+            CreateOrUpdateSpringAnimation(1.0f);
+
+            (sender as UIElement).StartAnimation(_springAnimation);
         }
     }
 }

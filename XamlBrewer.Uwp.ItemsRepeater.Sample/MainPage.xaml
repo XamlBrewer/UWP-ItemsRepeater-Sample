@@ -53,6 +53,8 @@
                     Padding="0"
                     CornerRadius="0">
                 <Image Source="{x:Bind PosterUrl}"
+                       PointerEntered="Element_PointerEntered"
+                       PointerExited="Element_PointerExited"
                        Height="360"
                        Stretch="UniformToFill"
                        HorizontalAlignment="Stretch"
