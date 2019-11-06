@@ -138,7 +138,11 @@
                               
                               With the mouse on this filmstrip you'll scroll vertically."
                               PreferredPlacement="Right"
+                              
                               IsOpen="False">
+            <!--<controls:TeachingTip.HeroContent>
+                <Image Source="/Assets/Clippy.png" />
+            </controls:TeachingTip.HeroContent>-->
             <controls:TeachingTip.IconSource>
                 <controls:SymbolIconSource Symbol="Sort" />
             </controls:TeachingTip.IconSource>

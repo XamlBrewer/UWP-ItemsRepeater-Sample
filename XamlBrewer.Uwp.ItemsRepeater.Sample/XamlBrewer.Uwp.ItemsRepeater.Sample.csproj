@@ -132,6 +132,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Clippy.png" />
     <Content Include="Assets\FilmStrip.png" />
     <Content Include="Assets\XamlFlix.png" />
     <Content Include="Properties\Default.rd.xml" />
